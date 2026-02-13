@@ -1,0 +1,41 @@
+import mongoose, { Schema } from "mongoose";
+
+const postSchema = new Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    img: {
+      type: String,
+    },
+    desc: {
+      type: String,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    visits: {
+      type: Number,
+      default: 0,
+    },
+  },
+  { timestamps: true }
+);
+
+export default mongoose.model("Post", postSchema);
